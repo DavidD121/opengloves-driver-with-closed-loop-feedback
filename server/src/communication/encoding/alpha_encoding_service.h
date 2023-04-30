@@ -14,18 +14,23 @@
 enum AlphaEncodingKey {
   kAlphaEncodingKey_ThumbCurl,
   kAlphaEncodingKey_ThumbSplay,
+  kAlphaEncodingKey_ThumbForce,
 
   kAlphaEncodingKey_IndexCurl,
   kAlphaEncodingKey_IndexSplay,
+  kAlphaEncodingKey_IndexForce
 
   kAlphaEncodingKey_MiddleCurl,
   kAlphaEncodingKey_MiddleSplay,
+  kAlphaEncodingKey_MiddleForce,
 
   kAlphaEncodingKey_RingCurl,
   kAlphaEncodingKey_RingSplay,
+  kAlphaEncodingKey_RingForce,
 
   kAlphaEncodingKey_PinkyCurl,
   kAlphaEncodingKey_PinkySplay,
+  kAlphaEncodingKey_PinkyForce,
 
   kAlphaEncodingKey_ThumbJoint0,
   kAlphaEncodingKey_ThumbJoint1,

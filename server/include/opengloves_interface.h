@@ -99,6 +99,7 @@ namespace og {
 
     std::array<std::array<float, 4>, 5> flexion;
     std::array<float, 5> splay;
+    std::array<float, 5> force;
 
     Button trigger;
     Button A;

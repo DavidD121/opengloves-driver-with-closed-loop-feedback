@@ -17,14 +17,19 @@ static const int max_analog_value = 4095;
 static const std::map<std::string, AlphaEncodingKey> alpha_encoding_input_key_strings{
     {"A", kAlphaEncodingKey_ThumbCurl},           // whole thumb curl
     {"(AB)", kAlphaEncodingKey_ThumbSplay},       // whole thumb splay
+    {"(AC)", kAlphaEncodingKey_ThumbForce},       // whole thumb force
     {"B", kAlphaEncodingKey_IndexCurl},           // whole index curl
     {"(BB)", kAlphaEncodingKey_IndexSplay},       // whole index splay
+    {"(BC)", kAlphaEncodingKey_IndexForce},       // whole index force
     {"C", kAlphaEncodingKey_MiddleCurl},          // whole middle curl
     {"(CB)", kAlphaEncodingKey_MiddleSplay},      // whole middle splay
+    {"(CC)", kAlphaEncodingKey_MiddleForce},      // whole middle force
     {"D", kAlphaEncodingKey_RingCurl},            // whole ring curl
     {"(DB)", kAlphaEncodingKey_RingSplay},        // whole ring splay
+    {"(DC)", kAlphaEncodingKey_RingForce},        // whole ring force
     {"E", kAlphaEncodingKey_PinkyCurl},           // whole pinky curl
     {"(EB)", kAlphaEncodingKey_PinkySplay},       // whole pinky splay
+    {"(EC)", kAlphaEncodingKey_IndexForce},       // whole pinky force
     {"(AAA)", kAlphaEncodingKey_ThumbJoint0},     // thumb joint 0
     {"(AAB)", kAlphaEncodingKey_ThumbJoint1},     // thumb joint 1
     {"(AAC)", kAlphaEncodingKey_ThumbJoint2},     // thumb joint 2
@@ -181,6 +186,18 @@ og::InputPeripheralData AlphaEncodingService::DecodePeripheralPacket(const std::
     result.splay[3] = (std::stof(input_map.at(kAlphaEncodingKey_RingSplay)) / configuration_.max_analog_value - 0.5f) * 2.0f;
   if (KeyInMap(kAlphaEncodingKey_PinkySplay, input_map))
     result.splay[4] = (std::stof(input_map.at(kAlphaEncodingKey_PinkySplay)) / configuration_.max_analog_value - 0.5f) * 2.0f;
+
+  // force readings
+  if (KeyInMap(kAlphaEncodingKey_ThumbForce, input_map))
+    result.force[0] = std::stof(input_map.at(kAlphaEncodingKey_ThumbForce)) / configuration_.max_analog_value;
+  if (KeyInMap(kAlphaEncodingKey_IndexForce, input_map))
+    result.force[1] = std::stof(input_map.at(kAlphaEncodingKey_IndexForce)) / configuration_.max_analog_value;
+  if (KeyInMap(kAlphaEncodingKey_MiddleForce, input_map))
+    result.force[2] = std::stof(input_map.at(kAlphaEncodingKey_MiddleForce)) / configuration_.max_analog_value;
+  if (KeyInMap(kAlphaEncodingKey_RingForce, input_map))
+    result.force[3] = std::stof(input_map.at(kAlphaEncodingKey_RingForce)) / configuration_.max_analog_value;
+  if (KeyInMap(kAlphaEncodingKey_PinkyForce, input_map))
+    result.force[4] = std::stof(input_map.at(kAlphaEncodingKey_PinkyForce)) / configuration_.max_analog_value;
 
   // main joystick
   if (KeyInMap(kAlphaEncodingKey_MainJoystick_X, input_map))
